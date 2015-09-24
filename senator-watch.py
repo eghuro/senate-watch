@@ -4,6 +4,7 @@
 import urllib2
 import xml.etree.ElementTree as etree
 import yaml
+import sys
 
 def ziskejHlasy(senator):
     url = "http://senat.cz/senatori/hlasovani_xml.php?pid="
@@ -34,9 +35,10 @@ def nactiKonfiguraci(soubor):
 
 def hlasyDleKonf(soubor):
     for senator in nactiKonfiguraci(soubor):
-        print senator
-#        ziskejHlasy(senator)
+        ziskejHlasy(senator)
+
+def main():
+    hlasyDleKonf(sys.argv[1])
 
 if __name__ == "__main__":
-    #ziskejHlasy(278)
-    hlasyDleKonf('conf.yml')
+    main()
