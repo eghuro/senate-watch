@@ -23,5 +23,20 @@ def ziskejHlasy(senator):
       print hlas.find('urlHlasu').text
       print "---"
 
+def nactiKonfiguraci(soubor):
+    cfile = open(soubor)
+    root = yaml.safe_load(cfile)
+    senatori = []
+    for senator in root['senatori']:
+       senatori.append(senator)
+    cfile.close()
+    return senatori
+
+def hlasyDleKonf(soubor):
+    for senator in nactiKonfiguraci(soubor):
+        print senator
+#        ziskejHlasy(senator)
+
 if __name__ == "__main__":
-    ziskejHlasy(278)
+    #ziskejHlasy(278)
+    hlasyDleKonf('conf.yml')
